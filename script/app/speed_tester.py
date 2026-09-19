@@ -9,7 +9,8 @@ class SpeedTester:
         self.url = url
         self.request_count = request_count
 
-    def execute(self) -> list[SpeedTestResult]:
+
+    def run(self) -> list[SpeedTestResult]:
         results = []
         for _ in range(self.request_count):
             elapsed, download = self._make_request()
@@ -27,8 +28,6 @@ class SpeedTester:
                 )
 
         return results
-
-        
 
 
     def _make_request(self) -> tuple[float, DownloadResult]:
