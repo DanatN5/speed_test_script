@@ -9,12 +9,12 @@ package-install:
 
 uninstall:
 	uv pip uninstall speed-test-script
+
+reinstall:
+	uv tool install --force dist/*.whl
 	
 package-uninstall:
 	uv tool uninstall speed_test_script
-
-run:
-	uv run speed_test -- help
 
 lint:
 	uv run ruff check
