@@ -1,7 +1,14 @@
 from typing import Protocol
-from urllib.request import urlopen
 from urllib.error import HTTPError, URLError
-from script.errors import ResourceNotFoundError, DownloadError, DownloadConnectionError, DownloadTimeOutError
+from urllib.request import urlopen
+
+from app.errors import (
+    DownloadConnectionError,
+    DownloadError,
+    DownloadTimeOutError,
+    ResourceNotFoundError,
+)
+
 
 class DownloaderProtocol(Protocol):
     def download(self, url: str): pass
@@ -28,8 +35,3 @@ class UrlLibDownloader:
 
         except URLError as error:
             raise DownloadConnectionError("Не удается установить соединение") from error
-
-
-url = "https:jfkdljflks"
-downloader = UrlLibDownloader()
-downloader.download(url)
