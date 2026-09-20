@@ -27,16 +27,16 @@ cd speed_test_script
 ````
 
 `````
-uv build
+make build
 ``````
 
 ````````
-uv tool install dist/*.whl
+make install
 ````````
+
 
 После установки утилиту можно запускать через CLI:
 
-speed-test <URL>
 Например:
 ````````
 speed-test https://example.com/file.bin
@@ -52,7 +52,7 @@ speed-test https://example.com/file.bin --requests 5
 
 Удаление:
 ````
-uv tool uninstall speed_test_script
+make uninstall
 ````
 
 ## Архитектура
