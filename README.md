@@ -14,28 +14,52 @@ CLI-утилита для измерения скорости загрузки �
 * CLI-интерфейс на argparse.
 * Сборка и установка как CLI-утилиты с помощью uv.
 
+## Установка
+
+Для управления проектом используется [uv](https://docs.astral.sh/uv/).
+
+``` 
+git clone git@github.com:DanatN5/speed_test_script.git
+```
+
+````
+cd speed_test_script
+````
+
+`````
+uv build
+``````
+
+````````
+uv tool install dist/*.whl
+````````
+
+После установки утилиту можно запускать через CLI:
+
+speed-test <URL>
+Например:
+````````
+speed-test https://example.com/file.bin
+````````
+Количество запросов можно изменить:
+
+````````
+speed-test https://example.com/file.bin --requests 5
+````````
+По умолчанию выполняется 10 последовательных запросов.
+
+
+
+Удаление:
+````
+uv tool uninstall speed_test_script
+````
+
 ## Архитектура
 
 Проект реализован с использованием принципов Clean Architecture.
 
 Основная идея — отделить бизнес-логику от деталей реализации и внешних зависимостей.
-                    ┌───────────────┐
-                    │    Parser     │
-                    │   argparse    │
-                    └───────┬───────┘
-                            │
-                            ▼
-┌───────────────┐    ┌───────────────┐
-│    Presenter  │◄───│  SpeedTester  │
-│    Console    │    │  Application  │
-└───────────────┘    └───────┬───────┘
-                             │
-                             │ DownloaderProtocol
-                             ▼
-                     ┌────────────────┐
-                     │ UrlLibDownloader│
-                     │    urllib       │
-                     └────────────────┘
 
 ### Слой приложения
 
@@ -65,18 +89,3 @@ Parser отвечает за получение параметров коман�
 
 Presenter отвечает за вывод результата и ошибок пользователю.
 
-## Установка
-
-Для управления проектом используется [uv](https://docs.astral.sh/uv/).
-
-uv sync
-После установки утилиту можно запускать через CLI:
-
-speed-test <URL>
-Например:
-
-speed-test https://example.com/file.bin
-Количество запросов можно изменить:
-
-speed-test https://example.com/file.bin --requests 5
-По умолчанию выполняется 10 последовательных запросов.
